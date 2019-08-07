@@ -1,10 +1,10 @@
-import { Component, OnInit, OnDestroy } from '@angular/core'
-import { ActivatedRoute } from '@angular/router'
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
-import { OfertasService } from './../ofertas.service'
+import { OfertasService } from './../ofertas.service';
 
-import { Oferta } from '../shared/oferta.model'
-import { Observable, Observer, Subscription } from 'rxjs'
+import { Oferta } from '../shared/oferta.model';
+import { Observable, Observer, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-oferta',
@@ -12,10 +12,10 @@ import { Observable, Observer, Subscription } from 'rxjs'
   styleUrls: ['./oferta.component.css']
 })
 export class OfertaComponent implements OnInit, OnDestroy {
-  public oferta: Oferta
+  public oferta: Oferta;
 
-  private tempoObservableSubscription: Subscription
-  private myObservableTestSubscription: Subscription
+  private tempoObservableSubscription: Subscription;
+  private myObservableTestSubscription: Subscription;
 
   constructor(
     private route: ActivatedRoute,
@@ -24,16 +24,16 @@ export class OfertaComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     // utilizando rota
-    console.log('Route', this.route.snapshot.params['id'])
+    console.log('Route', this.route.snapshot.params.id);
     // this.route.params.subscribe((parameter: any) => {
     //  console.log('Params id:', parameter.id)
     // })
 
-    this.ofertasService.getOfertasPorId(this.route.snapshot.params['id'])
+    this.ofertasService.getOfertasPorId(this.route.snapshot.params.id)
       .then((oferta: Oferta) => {
-        this.oferta = oferta
-        console.log(oferta)
-      })
+        this.oferta = oferta;
+        console.log(oferta);
+      });
 
     /* // this.route.params.subscribe(
     //   (parametro: any) => {
@@ -82,7 +82,7 @@ export class OfertaComponent implements OnInit, OnDestroy {
   */
 
   ngOnDestroy(): void {
-    console.log('componente destruído')
+    console.log('componente destruído');
     // this.tempoObservableSubscription.unsubscribe()
     // this.myObservableTestSubscription.unsubscribe()
   }

@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core'
-import { Oferta } from '../shared/oferta.model'
-import { OfertasService } from '../ofertas.service'
+import { Component, OnInit } from '@angular/core';
+import { Oferta } from '../shared/oferta.model';
+import { OfertasService } from '../ofertas.service';
 
 @Component({
 // tslint:disable-next-line: component-selector
@@ -11,7 +11,7 @@ import { OfertasService } from '../ofertas.service'
 
 export class RestauranteComponent implements OnInit {
 
-  public ofertas: Oferta[]
+  public ofertas: Oferta[];
 
   // public dataTest: any = new Date(2017, 8, 30)
 
@@ -20,8 +20,8 @@ export class RestauranteComponent implements OnInit {
   ngOnInit(): void {
     this.ofertasService.getOfertasPorCategorias('restaurante')
       .then((ofertas: Oferta[]) => {
-        this.ofertas = ofertas
-    })
+        this.ofertas = ofertas;
+    });
   }
 }
 
