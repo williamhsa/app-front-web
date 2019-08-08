@@ -19,7 +19,7 @@
             searchRefer(termoDePesquisa.value)"
           />
           <ul class="list-group" style="position: absolute">
-            <li class="list-group-item" *ngFor="let oferta of ofertaTwo"> {{ oferta.titulo | uppercase }} </li>
+            <li class="list-group-item" *ngFor="let oferta of ofertas | async"> {{ oferta.titulo | descricaoReduzida: 7 }} </li>
           </ul>
         </div>
         <div class="col-md-2">
