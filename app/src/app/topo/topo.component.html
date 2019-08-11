@@ -1,13 +1,13 @@
 <div class="fixed-top">
   <nav class="navbar navbar-light bg-faded">
     <div class="container">
-      <div class="row">
-        <div class="col-md-4">
+      <div class="row align-items-center input">
+        <div class="col-md-3">
           <a routerLink="" class="navbar-brand">
             <img src="/assets/logo.png" />
           </a>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-8">
           <!-- {{ ofertaTwo | json }} pipe transformando objeto em json -->
           <input 
             type="text" 
@@ -18,11 +18,15 @@
             searchEvent($event); 
             searchRefer(termoDePesquisa.value)"
           />
-          <ul class="list-group" style="position: absolute">
-            <li class="list-group-item" *ngFor="let oferta of ofertas | async"> {{ oferta.titulo | descricaoReduzida: 7 }} </li>
+          <ul class="list-group" style="position: absolute; z-index: 999">
+            <li class="list-group-item" *ngFor="let oferta of ofertas | async"> 
+              <a [routerLink]="['/oferta', oferta.id ]" (click)="clearSearch()">
+                {{ oferta.titulo | descricaoReduzida: 7 }} 
+              </a>
+            </li>
           </ul>
         </div>
-        <div class="col-md-2">
+        <div class="col-md">
             <a a href="#"><img src="/assets/carrinho.png" /></a>
         </div>
       </div>

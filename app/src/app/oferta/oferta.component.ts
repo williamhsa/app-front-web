@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 
 import { OfertasService } from './../ofertas.service';
 
@@ -29,11 +29,25 @@ export class OfertaComponent implements OnInit, OnDestroy {
     //  console.log('Params id:', parameter.id)
     // })
 
-    this.ofertasService.getOfertasPorId(this.route.snapshot.params.id)
+    this.route.params.subscribe((param: Params) => {
+
+      this.ofertasService.getOfertasPorId(param.id)
       .then((oferta: Oferta) => {
         this.oferta = oferta;
         console.log(oferta);
       });
+
+    });
+    /*
+      atributo params nos retorna um obserable, ele dispara um evento
+      quando ocorre uma alteração dos parametro nessa rota
+    */
+
+    /* this.ofertasService.getOfertasPorId(this.route.snapshot.params.id)
+      .then((oferta: Oferta) => {
+        this.oferta = oferta;
+        console.log(oferta);
+      }); */
 
     /* // this.route.params.subscribe(
     //   (parametro: any) => {

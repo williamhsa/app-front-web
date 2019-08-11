@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit } from '@angular/core';
 
-import { ActivatedRoute } from '@angular/router'
-import { OfertasService } from '../../ofertas.service'
+import { ActivatedRoute, Params } from '@angular/router';
+import { OfertasService } from '../../ofertas.service';
 
 
 @Component({
@@ -12,7 +12,7 @@ import { OfertasService } from '../../ofertas.service'
 export class ComoUsarComponent implements OnInit {
   // ng g c oferta/comoUsar --spec=false
 
-  public comoUsar: string
+  public comoUsar: string;
 
   constructor(
     private router: ActivatedRoute,
@@ -20,12 +20,22 @@ export class ComoUsarComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log('id: ', this.router.parent.snapshot.params['id'])
-    this.ofertasService.getComoUsarOfertaPorId(this.router.parent.snapshot.params['id'])
+
+    this.router.parent.params.subscribe((param: Params) => {
+
+      this.ofertasService.getComoUsarOfertaPorId(param.id)
+        .then((descricao: string) => {
+          this.comoUsar = descricao;
+      });
+
+    });
+
+    /* console.log('id: ', this.router.parent.snapshot.params.id);
+    this.ofertasService.getComoUsarOfertaPorId(this.router.parent.snapshot.params.id)
       .then((descricao: string) => {
-        this.comoUsar = descricao
-    })
-    console.log('comoUsar: ', this.comoUsar)
+        this.comoUsar = descricao;
+    }); */
+    console.log('comoUsar: ', this.comoUsar);
   }
 
 }

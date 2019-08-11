@@ -76,6 +76,10 @@ export class TopoComponent implements OnInit {
     ) */
   }
 
+  public clearSearch(): void {
+    this.subjectSearch.next('');
+  }
+
 }
 
 
