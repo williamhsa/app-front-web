@@ -23,6 +23,7 @@ import { OfertasService } from './ofertas.service';
 import 'rxjs/Rx';
 
 import { DescricaoReduzida } from './shared/pipes/descricao-reduzida.pipe';
+import { OrdemCompraComponent } from './ordem-compra/ordem-compra.component';
 
 registerLocaleData(localePt);
 
@@ -37,7 +38,8 @@ registerLocaleData(localePt);
     OfertaComponent,
     ComoUsarComponent,
     OndeFicaComponent,
-    DescricaoReduzida
+    DescricaoReduzida,
+    OrdemCompraComponent
   ],
   imports: [
     BrowserModule,
