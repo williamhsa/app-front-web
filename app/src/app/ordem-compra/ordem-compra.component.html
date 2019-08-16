@@ -1,6 +1,6 @@
 <div class="container">
   <div class="ordem-compra">
-    <form>
+    <form novalidate>
     
       <h5>Sua Compra</h5>
       <hr />
@@ -69,18 +69,42 @@
       <div class="form-row">
 
         <div class="form-group col-md-6">
-          <input type="text" class="form-control is-invalid" placeholder="Endereço" autocomplete="off" minlength="5" required>
+          <input #inputAddress
+            type="text" 
+            class="form-control {{ addressPrimitiveState ? '' : (addressValid ? 'is-valid' : 'is-invalid') }}" 
+            placeholder="Endereço" 
+            autocomplete="off" 
+            minlength="5" 
+            required
+            [value]="address"
+            (input)="updateAddress(inputAddress.value)"
+          >
           <div class="invalid-feedback">Endereço inválido</div>
         </div>
 
         <div class="form-group col-md-2">
-          <input type="text" class="form-control is-valid" placeholder="Número" autocomplete="off" minlength="1" required>
-          <br />
+          <input #inputNumber
+            type="text" 
+            class="form-control {{ numberPrimitiveState ? '' : (numberValid ? 'is-valid' : 'is-invalid') }}" 
+            placeholder="Número" 
+            autocomplete="off" 
+            minlength="1" 
+            required
+            [value]="numberValue"
+            (input)="updateNumber(inputNumber.value)"
+          >
           <small class="form-text text-muted">Ok</small>
         </div>
 
         <div class="form-group col-md-4">
-          <input type="text" class="form-control" placeholder="Complemento" autocomplete="off">
+          <input #inputComplement
+            type="text" 
+            class="form-control {{ complementPrimitiveState ? '' : (complementValid ? 'is-valid' : '') }}" 
+            placeholder="Complemento" 
+            autocomplete="off"
+            [value]="complement"
+            (input)="updateComplement(inputComplement.value)"
+          >
         </div>
 
       </div>
@@ -92,10 +116,14 @@
       <div class="form-row">
           
         <div class="form-group col-md-3">
-          <select class="form-control is-invalid">
-            <option>Selecione uma opção</option>
-            <option>Dinheiro</option>
-            <option>Débito</option>
+          <select #selectPaymentForm
+            class="form-control {{ paymentFormPrimitiveState ? '' : (paymentFormValid ? 'is-valid' : 'is-invalid') }}"
+            (change)="updatePaymentForm(selectPaymentForm.value)"
+          >
+          <!-- esse value vai buscar o value do option que selected for igual a selected -->
+            <option value="">Selecione uma opção</option>
+            <option value="money" selected="{{ paymentForm == 'money' ? 'selected' : '' }}">Dinheiro</option>
+            <option value="debit" selected="{{ paymentForm == 'debit' ? 'selected' : '' }}">Débito</option>
           </select>
 
           <div class="invalid-feedback">Selecione uma forma de pagamento</div>
