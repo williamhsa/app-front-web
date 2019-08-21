@@ -1,11 +1,17 @@
 import { Component, OnInit } from '@angular/core';
+import { OrdemCompraService } from '../ordem-compra.service';
+import { Pedido } from '../shared/pedido.model';
 
 @Component({
   selector: 'app-ordem-compra',
   templateUrl: './ordem-compra.component.html',
-  styleUrls: ['./ordem-compra.component.css']
+  styleUrls: ['./ordem-compra.component.css'],
+  providers: [ OrdemCompraService ]
 })
 export class OrdemCompraComponent implements OnInit {
+
+  // Pedido
+  public pedido: Pedido = new Pedido('', '', '', '');
 
   public address: string = '';
   public numberValue: string = '';
@@ -19,15 +25,28 @@ export class OrdemCompraComponent implements OnInit {
   public complementValid: boolean;
   public paymentFormValid: boolean;
 
+  // controlar botão confirmar compra
+  public formState: string = 'disabled';
+
   // estados primitivos dos campos (pristine)
   public addressPrimitiveState: boolean = true;
   public numberPrimitiveState: boolean = true;
   public complementPrimitiveState: boolean = true;
   public paymentFormPrimitiveState: boolean = true;
 
-  constructor() { }
+  constructor(private ordemComraService: OrdemCompraService) { }
 
   ngOnInit() {
+    // this.ordemComraService.effectBuy()
+  }
+
+  public confirmBuy(): void {
+    this.pedido.address = this.address;
+    this.pedido.numberAddress = this.numberValue;
+    this.pedido.complement = this.complement;
+    this.pedido.paymentForm = this.paymentForm;
+    this.ordemComraService.effectBuy(this.pedido)
+      .subscribe();
   }
 
   public updateAddress(address: string): void {
@@ -42,6 +61,8 @@ export class OrdemCompraComponent implements OnInit {
     } else {
       this.addressValid = false;
     }
+
+    this.enableForm();
   }
 
   public updateNumber(value: string): void {
@@ -51,11 +72,13 @@ export class OrdemCompraComponent implements OnInit {
     this.numberPrimitiveState = false;
 
     // será valido se a string possui 1 ou mais caracteres
-    if (this.numberValue.length >= 1) {
+    if (this.numberValue.length > 0) {
       this.numberValid = true;
     } else {
       this.numberValid = false;
     }
+
+    this.enableForm();
   }
 
   public updateComplement(complement: string): void {
@@ -80,6 +103,16 @@ export class OrdemCompraComponent implements OnInit {
       this.paymentFormValid = true;
     } else {
       this.paymentFormValid = false;
+    }
+
+    this.enableForm();
+  }
+
+  public enableForm(): void {
+    if ( this.addressValid && this.numberValid && this.paymentFormValid) {
+      this.formState = '';
+    } else {
+      this.formState = 'disabled';
     }
   }
 
