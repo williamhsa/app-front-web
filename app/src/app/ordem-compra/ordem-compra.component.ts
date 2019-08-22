@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OrdemCompraService } from '../ordem-compra.service';
-import { Pedido } from '../shared/pedido.model';
+import { Order } from '../shared/order.model';
 
 @Component({
   selector: 'app-ordem-compra',
@@ -10,8 +10,9 @@ import { Pedido } from '../shared/pedido.model';
 })
 export class OrdemCompraComponent implements OnInit {
 
-  // Pedido
-  public pedido: Pedido = new Pedido('', '', '', '');
+  public idOrderBuy: number;
+  // order
+  public order: Order = new Order('', '', '', '');
 
   public address: string = '';
   public numberValue: string = '';
@@ -41,12 +42,14 @@ export class OrdemCompraComponent implements OnInit {
   }
 
   public confirmBuy(): void {
-    this.pedido.address = this.address;
-    this.pedido.numberAddress = this.numberValue;
-    this.pedido.complement = this.complement;
-    this.pedido.paymentForm = this.paymentForm;
-    this.ordemComraService.effectBuy(this.pedido)
-      .subscribe();
+    this.order.address = this.address;
+    this.order.numberAddress = this.numberValue;
+    this.order.complement = this.complement;
+    this.order.paymentForm = this.paymentForm;
+    this.ordemComraService.effectBuy(this.order)
+      .subscribe((idOrder: number) => {
+        this.idOrderBuy = idOrder;
+      });
   }
 
   public updateAddress(address: string): void {

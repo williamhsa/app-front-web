@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
 import { HttpModule } from '@angular/http';
-// import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { TopoComponent } from './topo/topo.component';
@@ -24,6 +24,7 @@ import 'rxjs/Rx';
 
 import { DescricaoReduzida } from './shared/pipes/descricao-reduzida.pipe';
 import { OrdemCompraComponent } from './ordem-compra/ordem-compra.component';
+import { OrdemCompraSucessoComponent } from './ordem-compra-sucesso/ordem-compra-sucesso.component';
 
 registerLocaleData(localePt);
 
@@ -39,12 +40,14 @@ registerLocaleData(localePt);
     ComoUsarComponent,
     OndeFicaComponent,
     DescricaoReduzida,
-    OrdemCompraComponent
+    OrdemCompraComponent,
+    OrdemCompraSucessoComponent
   ],
   imports: [
     BrowserModule,
     // tslint:disable-next-line: deprecation
     HttpModule,
+    HttpClientModule,
     // HttpClientModule, change for this after
     RouterModule.forRoot(ROUTES)
   ],

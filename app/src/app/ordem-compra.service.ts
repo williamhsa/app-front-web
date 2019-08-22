@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Http, RequestOptions, Headers } from '@angular/http';
-import { Pedido } from './shared/pedido.model';
+import { HttpClient } from '@angular/common/http';
+import { Order } from './shared/order.model';
 import { Observable } from 'rxjs';
 import { URL_API } from './app.api';
 
@@ -8,21 +8,15 @@ import { URL_API } from './app.api';
 @Injectable()
 export class OrdemCompraService {
 
-  constructor(private http: Http) {}
+  constructor(
+    private httpClient: HttpClient
+  ) {}
 
-  public effectBuy(pedido: Pedido): Observable<any> {
-    let headers: Headers = new Headers();
+  public effectBuy(order: Order): Observable<any> {
+    console.log('objeto pedido: ', order);
 
-    headers.append('Content-type', 'application/json');
-
-    console.log('objeto pedido: ', pedido);
-
-    return this.http.post(
-      `${URL_API}/pedidos`,
-       JSON.stringify(pedido),
-       new RequestOptions({ headers: headers })
-    )
-    .map((res: Response) => console.log(res.json()); );
+    return this.httpClient.post<any>(`${URL_API}/pedidos`, order)
+    .map((res: any) => res.id);
   }
 }
 

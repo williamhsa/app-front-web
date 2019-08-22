@@ -1,4 +1,4 @@
-export class Pedido {
+export class Order {
   constructor(
     public address: string,
     public numberAddress: string,
