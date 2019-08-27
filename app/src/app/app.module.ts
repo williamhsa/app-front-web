@@ -5,6 +5,7 @@ import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { TopoComponent } from './topo/topo.component';
@@ -23,8 +24,8 @@ import { OfertasService } from './ofertas.service';
 import 'rxjs/Rx';
 
 import { DescricaoReduzida } from './shared/pipes/descricao-reduzida.pipe';
-import { OrdemCompraComponent } from './ordem-compra/ordem-compra.component';
 import { OrdemCompraSucessoComponent } from './ordem-compra-sucesso/ordem-compra-sucesso.component';
+import { OrdemCompraComponent } from './ordem-compra/ordem-compra.component';
 
 registerLocaleData(localePt);
 
@@ -49,6 +50,7 @@ registerLocaleData(localePt);
     HttpModule,
     HttpClientModule,
     // HttpClientModule, change for this after
+    FormsModule,
     RouterModule.forRoot(ROUTES)
   ],
   providers: [
