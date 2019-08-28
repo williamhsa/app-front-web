@@ -187,88 +187,46 @@
   ],
   "pedidos": [
     {
-      "address": "asdads",
-      "numberAddress": "asd",
-      "complement": "asd",
-      "paymentForm": "money",
+      "address": "rua joao velasco",
+      "numberAddress": "123",
+      "complement": "123",
+      "paymentForm": "dinheiro",
       "id": 1
     },
     {
-      "address": "tttttttt",
-      "numberAddress": "tttttt",
-      "complement": "ttttt",
-      "paymentForm": "debit",
+      "address": "Av. Andorinhas, Bairro Jd. Andorinhas",
+      "numberAddress": "477",
+      "complement": "asdas",
+      "paymentForm": "debito",
       "id": 2
     },
     {
-      "address": "tttttttt",
-      "numberAddress": "tttttt",
-      "complement": "ttttt",
-      "paymentForm": "debit",
+      "address": "asdas",
+      "numberAddress": "ads",
+      "complement": "asd",
+      "paymentForm": "dinheiro",
       "id": 3
     },
     {
-      "address": "tttttttt",
-      "numberAddress": "tttttt",
-      "complement": "ttttt",
-      "paymentForm": "debit",
+      "address": "adsad",
+      "numberAddress": "asdasd",
+      "complement": "asdasdas",
+      "paymentForm": "dinheiro",
       "id": 4
     },
     {
-      "address": "rrrr",
-      "numberAddress": "rr",
-      "complement": "rrr",
-      "paymentForm": "money",
+      "address": "hasuhasd",
+      "numberAddress": "1111",
+      "complement": "asdas",
+      "paymentForm": "debito",
       "id": 5
     },
     {
-      "address": "qqqq",
-      "numberAddress": "qq",
-      "complement": "qqq",
-      "paymentForm": "money",
+      "address": "Rua antonio",
+      "numberAddress": "34",
+      "complement": "apt 1",
+      "paymentForm": "debito",
       "id": 6
-    },
-    {
-      "address": "ereer",
-      "numberAddress": "errer",
-      "complement": "err",
-      "paymentForm": "money",
-      "id": 7
-    },
-    {
-      "address": "qweqeq",
-      "numberAddress": "bbbb",
-      "complement": "bbb",
-      "paymentForm": "money",
-      "id": 8
-    },
-    {
-      "address": "asdasd",
-      "numberAddress": "asd",
-      "complement": "asd",
-      "paymentForm": "money",
-      "id": 9
-    },
-    {
-      "address": "33333333",
-      "numberAddress": "33333",
-      "complement": "33333",
-      "paymentForm": "debit",
-      "id": 10
-    },
-    {
-      "address": "rererere",
-      "numberAddress": "hhhhh",
-      "complement": "hh",
-      "paymentForm": "debit",
-      "id": 11
-    },
-    {
-      "address": "cccccc",
-      "numberAddress": "ccccc",
-      "complement": "cccccc",
-      "paymentForm": "money",
-      "id": 12
     }
   ]
 }
