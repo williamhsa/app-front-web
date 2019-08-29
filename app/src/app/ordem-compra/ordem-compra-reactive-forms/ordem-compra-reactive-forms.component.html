@@ -1,6 +1,6 @@
 <div class="container">
   <div class="ordem-compra">
-    <form novalidate>
+    <form [formGroup]="formOrderBuy" novalidate (ngSubmit)="confirmBuy()">
     
       <h5>Sua Compra</h5>
       <hr />
@@ -73,6 +73,7 @@
             class="form-control" 
             placeholder="Endereço" 
             autocomplete="off" 
+            formControlName="address"
           >
           <small class="form-text text-success">Ok</small>
         </div>
@@ -83,6 +84,7 @@
             class="form-control" 
             placeholder="Número" 
             autocomplete="off"
+            formControlName="number"
           >
           <small class="form-text text-success">Ok</small>
         </div>
@@ -93,6 +95,7 @@
             class="form-control" 
             placeholder="Complemento" 
             autocomplete="off"
+            formControlName="complement"
           >
         </div>
 
@@ -107,6 +110,7 @@
         <div class="form-group col-md-3">
           <select 
             class="form-control"
+            formControlName="formPayment"
           >
             <option value="">Selecione uma opção</option>
             <option value="dinheiro">Dinheiro</option>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OrdemCompraService } from 'src/app/ordem-compra.service';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-ordem-compra-reactive-forms',
@@ -8,11 +9,20 @@ import { OrdemCompraService } from 'src/app/ordem-compra.service';
 })
 export class OrdemCompraReactiveFormsComponent implements OnInit {
 
+  public formOrderBuy: FormGroup = new FormGroup({
+    address: new FormControl(null, [ Validators.required, Validators.minLength(3), Validators.maxLength(120) ]),
+    number: new FormControl(null,  [ Validators.required, Validators.minLength(1), Validators.maxLength(20) ]),
+    complement: new FormControl(null),
+    formPayment: new FormControl(null,  [ Validators.required ]),
+  });
+
   constructor(private ordemCompraService: OrdemCompraService) { }
 
   ngOnInit() {
 
   }
 
-  public confirmarCompra(): void {}
+  public confirmBuy(): void {
+    console.log(this.formOrderBuy);
+  }
 }
