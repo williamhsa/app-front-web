@@ -24,7 +24,7 @@ export class OrdemCompraComponent implements OnInit {
 
   public confirmBuy(): void {
     console.log(this.formBuy.value);
-    let order: Order = new Order(
+    const order: Order = new Order(
       this.formBuy.value.address,
       this.formBuy.value.number,
       this.formBuy.value.complement,

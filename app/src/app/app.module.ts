@@ -5,7 +5,7 @@ import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { TopoComponent } from './topo/topo.component';
@@ -20,12 +20,15 @@ import { OndeFicaComponent } from './oferta/onde-fica/onde-fica.component';
 import { ROUTES } from './app.routes';
 
 import { OfertasService } from './ofertas.service';
+import { OrdemCompraService } from './ordem-compra.service';
 
 import 'rxjs/Rx';
 
 import { DescricaoReduzida } from './shared/pipes/descricao-reduzida.pipe';
 import { OrdemCompraSucessoComponent } from './ordem-compra-sucesso/ordem-compra-sucesso.component';
 import { OrdemCompraComponent } from './ordem-compra/ordem-compra.component';
+import { OrdemCompraReactiveFormsComponent } from './ordem-compra/ordem-compra-reactive-forms/ordem-compra-reactive-forms.component';
+import { OrdemCompraDataBindingComponent } from './ordem-compra/ordem-compra-data-binding/ordem-compra-data-binding.component';
 
 registerLocaleData(localePt);
 
@@ -42,7 +45,9 @@ registerLocaleData(localePt);
     OndeFicaComponent,
     DescricaoReduzida,
     OrdemCompraComponent,
-    OrdemCompraSucessoComponent
+    OrdemCompraSucessoComponent,
+    OrdemCompraReactiveFormsComponent,
+    OrdemCompraDataBindingComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,10 +56,12 @@ registerLocaleData(localePt);
     HttpClientModule,
     // HttpClientModule, change for this after
     FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(ROUTES)
   ],
   providers: [
     OfertasService,
+    OrdemCompraService,
     { provide: LOCALE_ID, useValue: 'pt-BR' }
   ],
   bootstrap: [AppComponent]

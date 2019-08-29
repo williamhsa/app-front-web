@@ -3,12 +3,12 @@ import { OrdemCompraService } from '../../ordem-compra.service';
 import { Order } from '../../shared/order.model';
 
 @Component({
-  selector: 'app-ordem-compra-db',
-  templateUrl: './ordem-compra.component-db.html',
-  styleUrls: ['./ordem-compra.component-db.css'],
+  selector: 'app-ordem-compra-data-binding',
+  templateUrl: './ordem-compra-data-binding.component.html',
+  styleUrls: ['./ordem-compra-data-binding.component.css'],
   providers: [ OrdemCompraService ]
 })
-export class OrdemCompraDbComponent implements OnInit {
+export class OrdemCompraDataBindingComponent implements OnInit {
 
   public idOrderBuy: number;
   // order
