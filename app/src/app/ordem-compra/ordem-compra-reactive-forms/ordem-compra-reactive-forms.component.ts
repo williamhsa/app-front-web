@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OrdemCompraService } from 'src/app/ordem-compra.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Order } from '../../shared/order.model';
 
 @Component({
   selector: 'app-ordem-compra-reactive-forms',
@@ -8,6 +9,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./ordem-compra-reactive-forms.component.css']
 })
 export class OrdemCompraReactiveFormsComponent implements OnInit {
+
+  public idOrderBuy: number;
 
   public formOrderBuy: FormGroup = new FormGroup({
     address: new FormControl(null, [ Validators.required, Validators.minLength(3), Validators.maxLength(120) ]),
@@ -24,5 +27,18 @@ export class OrdemCompraReactiveFormsComponent implements OnInit {
 
   public confirmBuy(): void {
     console.log(this.formOrderBuy);
+    const order: Order = new Order(
+      this.formOrderBuy.value.address,
+      this.formOrderBuy.value.number,
+      this.formOrderBuy.value.complement,
+      this.formOrderBuy.value.formPayment
+    );
+
+    this.ordemCompraService.effectBuy(order)
+      .subscribe((id: number) => {
+        this.idOrderBuy = id;
+        console.log(id);
+      });
+
   }
 }

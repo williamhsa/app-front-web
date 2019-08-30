@@ -1,6 +1,6 @@
 <div class="container">
   <div class="ordem-compra">
-    <form [formGroup]="formOrderBuy" novalidate (ngSubmit)="confirmBuy()">
+    <form [formGroup]="formOrderBuy" novalidate (ngSubmit)="confirmBuy()" *ngIf="idOrderBuy === undefined">
     
       <h5>Sua Compra</h5>
       <hr />
@@ -75,7 +75,18 @@
             autocomplete="off" 
             formControlName="address"
           >
-          <small class="form-text text-success">Ok</small>
+          <small 
+            class="form-text text-success" 
+            *ngIf="formOrderBuy.controls.address.valid && formOrderBuy.controls.address.touched"
+          >
+            Ok
+          </small>
+          <small 
+            class="form-text text-danger" 
+            *ngIf="!formOrderBuy.controls.address.valid && formOrderBuy.controls.address.touched"
+          >
+            Endereço inválido
+          </small>
         </div>
 
         <div class="form-group col-md-2">
@@ -86,7 +97,18 @@
             autocomplete="off"
             formControlName="number"
           >
-          <small class="form-text text-success">Ok</small>
+          <small 
+            class="form-text text-success" 
+            *ngIf="formOrderBuy.controls.number.valid && formOrderBuy.controls.number.touched"
+          >
+            Ok
+          </small>
+          <small 
+            class="form-text text-danger" 
+            *ngIf="!formOrderBuy.controls.number.valid && formOrderBuy.controls.number.touched"
+          >
+            Número inválido
+          </small>
         </div>
 
         <div class="form-group col-md-4">
@@ -116,15 +138,30 @@
             <option value="dinheiro">Dinheiro</option>
             <option value="debito">Débito</option>
           </select>
-          <small class="form-text text-success">Ok</small>
+          <small 
+            class="form-text text-success" 
+            *ngIf="formOrderBuy.controls.formPayment.valid && formOrderBuy.controls.formPayment.touched"
+          >
+            Ok
+          </small>
+          <small 
+            class="form-text text-danger" 
+            *ngIf="!formOrderBuy.controls.formPayment.valid && formOrderBuy.controls.formPayment.touched"
+          >
+            Forma de pagamento inválido
+          </small>
         </div>
       </div>
 
       <hr />
       <button 
+        [disabled]="!formOrderBuy.valid"
         type="submit" 
         class="btn btn-primary btn-lg"
       >Cofirmar compra</button>
     </form>
+  </div>
+  <div class="ordem-compra" *ngIf="idOrderBuy !== undefined">
+    <app-ordem-compra-sucesso [idOrderBuy]=idOrderBuy></app-ordem-compra-sucesso>
   </div>
 </div>
