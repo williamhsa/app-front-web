@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { OrdemCompraService } from 'src/app/ordem-compra.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+
 import { Order } from '../../shared/order.model';
+import CarrinhoService from '../../carrinho.service';
 
 @Component({
   selector: 'app-ordem-compra-reactive-forms',
   templateUrl: './ordem-compra-reactive-forms.component.html',
-  styleUrls: ['./ordem-compra-reactive-forms.component.css']
+  styleUrls: ['./ordem-compra-reactive-forms.component.css'],
+  providers: [ CarrinhoService ]
 })
 export class OrdemCompraReactiveFormsComponent implements OnInit {
 
@@ -19,10 +22,13 @@ export class OrdemCompraReactiveFormsComponent implements OnInit {
     formPayment: new FormControl(null,  [ Validators.required ]),
   });
 
-  constructor(private ordemCompraService: OrdemCompraService) { }
+  constructor(
+    private ordemCompraService: OrdemCompraService,
+    private carrinhoService: CarrinhoService
+  ) { }
 
   ngOnInit() {
-
+    console.log('carrinho: ', this.carrinhoService.showItens());
   }
 
   public confirmBuy(): void {

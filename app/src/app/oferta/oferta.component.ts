@@ -3,13 +3,16 @@ import { ActivatedRoute, Params } from '@angular/router';
 
 import { OfertasService } from './../ofertas.service';
 
-import { Oferta } from '../shared/oferta.model';
 import { Observable, Observer, Subscription } from 'rxjs';
+
+import { Oferta } from '../shared/oferta.model';
+import CarrinhoService from '../carrinho.service';
 
 @Component({
   selector: 'app-oferta',
   templateUrl: './oferta.component.html',
-  styleUrls: ['./oferta.component.css']
+  styleUrls: ['./oferta.component.css'],
+  providers: [ CarrinhoService ]
 })
 export class OfertaComponent implements OnInit, OnDestroy {
   public oferta: Oferta;
@@ -19,10 +22,12 @@ export class OfertaComponent implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
-    private ofertasService: OfertasService
+    private ofertasService: OfertasService,
+    private carrinhoService: CarrinhoService
   ) { }
 
   ngOnInit() {
+    console.log('Oferta CarrinhoService: ', this.carrinhoService.showItens());
     // utilizando rota
     console.log('Route', this.route.snapshot.params.id);
     // this.route.params.subscribe((parameter: any) => {
