@@ -4,6 +4,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { Order } from '../../shared/order.model';
 import { CarrinhoService } from '../../carrinho.service';
+import { ItemCarrinho } from 'src/app/shared/item-carrinho.model';
 
 @Component({
   selector: 'app-ordem-compra-reactive-forms',
@@ -14,6 +15,7 @@ import { CarrinhoService } from '../../carrinho.service';
 export class OrdemCompraReactiveFormsComponent implements OnInit {
 
   public idOrderBuy: number;
+  public itemCart: ItemCarrinho[] = [];
 
   public formOrderBuy: FormGroup = new FormGroup({
     address: new FormControl(null, [ Validators.required, Validators.minLength(3), Validators.maxLength(120) ]),
@@ -27,8 +29,12 @@ export class OrdemCompraReactiveFormsComponent implements OnInit {
     private carrinhoService: CarrinhoService
   ) { }
 
+    // template tbm tem acesso ao servico do construtor.
+
   ngOnInit() {
     console.log('carrinho Service: ', this.carrinhoService.showItens());
+    this.itemCart = this.carrinhoService.showItens();
+    console.log('itemCart: ', this.itemCart);
   }
 
   public confirmBuy(): void {
