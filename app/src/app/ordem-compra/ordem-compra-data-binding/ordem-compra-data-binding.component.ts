@@ -12,7 +12,7 @@ export class OrdemCompraDataBindingComponent implements OnInit {
 
   public idOrderBuy: number;
   // order
-  public order: Order = new Order('', '', '', '');
+  // public order: Order = new Order('', '', '', '', '');
 
   public address: string = '';
   public numberValue: string = '';
@@ -41,16 +41,16 @@ export class OrdemCompraDataBindingComponent implements OnInit {
     // this.ordemComraService.effectBuy()
   }
 
-  public confirmBuy(): void {
-    this.order.address = this.address;
-    this.order.numberAddress = this.numberValue;
-    this.order.complement = this.complement;
-    this.order.paymentForm = this.paymentForm;
-    this.ordemComraService.effectBuy(this.order)
-      .subscribe((idOrder: number) => {
-        this.idOrderBuy = idOrder;
-      });
-  }
+  // public confirmBuy(): void {
+  //   this.order.address = this.address;
+  //   this.order.numberAddress = this.numberValue;
+  //   this.order.complement = this.complement;
+  //   this.order.paymentForm = this.paymentForm;
+  //   this.ordemComraService.effectBuy(this.order)
+  //     .subscribe((idOrder: number) => {
+  //       this.idOrderBuy = idOrder;
+  //     });
+  // }
 
   public updateAddress(address: string): void {
     this.address = address;

@@ -43,6 +43,36 @@ export class CarrinhoService {
 
     return total;
   }
+
+  public adicionarQuantidade(itemCarrinho: ItemCarrinho): void {
+    //incrementar quantidade
+
+    let itemCarrinhoEncontrado = this.itens.find((item: ItemCarrinho) => item.id === itemCarrinho.id);
+
+    if (itemCarrinhoEncontrado) {
+      itemCarrinhoEncontrado.quantidade += 1;
+    }
+  }
+
+  public diminuirQuantidade(itemCarrinho: ItemCarrinho): void {
+    // decrementar quantidade
+
+    let itemCarrinhoEncontrado = this.itens.find((item: ItemCarrinho) => item.id === itemCarrinho.id);
+
+    if (itemCarrinhoEncontrado) {
+      itemCarrinhoEncontrado.quantidade -= 1;
+
+      if (itemCarrinhoEncontrado.quantidade === 0) {
+        //  com base em um indice, ele vai recortar aquele indice e devolver aquele
+        // indice para um variavel
+        this.itens.splice(this.itens.indexOf(itemCarrinhoEncontrado), 1);
+      }
+    }
+  }
+
+  public clearCart(): void {
+    this.itens = [];
+  }
 }
 
 

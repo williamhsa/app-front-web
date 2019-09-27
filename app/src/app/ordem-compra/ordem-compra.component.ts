@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { OrdemCompraService } from '../ordem-compra.service';
 import { Order } from '../shared/order.model';
 import { NgForm } from '@angular/forms';
+import { CarrinhoService } from '../carrinho.service';
 
 @Component({
   selector: 'app-ordem-compra',
@@ -16,7 +17,10 @@ export class OrdemCompraComponent implements OnInit {
 
   public idOrderBuy: number;
 
-  constructor(private ordemCompraService: OrdemCompraService) { }
+  constructor(
+    private ordemCompraService: OrdemCompraService,
+    private carrinhoService: CarrinhoService
+  ) { }
 
   ngOnInit() {
 
@@ -28,7 +32,8 @@ export class OrdemCompraComponent implements OnInit {
       this.formBuy.value.address,
       this.formBuy.value.number,
       this.formBuy.value.complement,
-      this.formBuy.value.formPayment
+      this.formBuy.value.formPayment,
+      this.carrinhoService.showItens()
     );
     this.ordemCompraService.effectBuy(order)
       .subscribe((id: number) => {

@@ -38,19 +38,40 @@ export class OrdemCompraReactiveFormsComponent implements OnInit {
   }
 
   public confirmBuy(): void {
-    console.log(this.formOrderBuy);
-    const order: Order = new Order(
-      this.formOrderBuy.value.address,
-      this.formOrderBuy.value.number,
-      this.formOrderBuy.value.complement,
-      this.formOrderBuy.value.formPayment
-    );
 
-    this.ordemCompraService.effectBuy(order)
-      .subscribe((id: number) => {
-        this.idOrderBuy = id;
-        console.log(id);
-      });
+    if (this.carrinhoService.showItens().length === 0) {
+      alert('Você não selecionou nenhum item!');
+    } else {
+      console.log(this.formOrderBuy);
+      const order: Order = new Order(
+        this.formOrderBuy.value.address,
+        this.formOrderBuy.value.number,
+        this.formOrderBuy.value.complement,
+        this.formOrderBuy.value.formPayment,
+        this.carrinhoService.showItens()
+      );
 
+      this.ordemCompraService.effectBuy(order)
+        .subscribe((id: number) => {
+          this.idOrderBuy = id;
+          console.log(id);
+          this.carrinhoService.clearCart();
+        });
+    }
+
+  }
+
+
+  /*
+    aumentando a quantidade de itens de um item do carrinho em especifico, existe duas formas
+    de se faze isso, a primeira é do template chamar um metodo da classe do componente e dentro dele
+    utilizar um metodo do serviço. Ou do template já chamar o metodo do servico.
+  */
+  public adicionar(item: ItemCarrinho): void {
+    this.carrinhoService.adicionarQuantidade(item);
+  }
+
+  public diminuir(item: ItemCarrinho): void {
+    this.carrinhoService.diminuirQuantidade(item);
   }
 }
