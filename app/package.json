@@ -7,6 +7,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "server": "json-server --port=3100 banco_de_dados.json",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
