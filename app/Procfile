@@ -1,0 +1,2 @@
+web: npm run start
+web: json-server -p process.env.PORT banco_de_dados.json
