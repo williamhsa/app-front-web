@@ -1,4 +1,21 @@
+<!-- <button (click)="toggleState()">Teste</button> -->
+<div class="banner-background">
+  <img 
+    *ngFor="let imagem of imagens" 
+    [src]="imagem.url" 
+    [@banner]="imagem.estado"
+  >
+</div>
+
+
+<!-- 
 <button (click)="toggleState()">Teste</button>
 <div class="banner-background">
-    <img src="/assets/banner-acesso/img_1.png" [@banner]="estado">
+  <img 
+    *ngFor="let item of items" 
+    src="/assets/banner-acesso/img_1.png" [@banner]="estado"
+  >
 </div>
+
+
+ -->
