@@ -3,8 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "node server.js",
-    "start:local": "ng serve",
+    "start": "ng serve",
     "server": "json-server --port=3100 banco_de_dados.json",
     "build": "ng build",
     "test": "ng test",
